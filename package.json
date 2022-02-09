@@ -14,6 +14,7 @@
   "devDependencies": {
     "dotenv": "^5.0.0",
     "gulp": "^3.9.1",
+    "fsevents": "^2.1.2"
     "gulp-clean": "^0.4.0",
     "gulp-sass": "^3.1.0",
     "gulp-serve": "^1.4.0",
@@ -21,8 +22,5 @@
     "netlify-lambda": "^0.2.0",
     "request": "^2.83.0",
     "run-sequence": "^2.2.1"
-  },
-"optionalDependencies": {
-  "fsevents": "2.1.2"
-},
+  }
 }
