@@ -13,7 +13,7 @@ export function handler(event, context, callback) {
   var destination = event.queryStringParameters['to'];
   var influencer = event.queryStringParameters['utm_campaign'];
   var platform = event.queryStringParameters['utm_source'];
-  var full_destination = "https://try.javycoffee.com/lp17/" + "?utm_source=" + platform + "utm_medium=influencer" + "&utm_campaign=" + influencer;
+  var full_destination = "https://try.javycoffee.com/lp17/" + "?utm_source=" + platform + "&utm_medium=influencer" + "&utm_campaign=" + influencer;
 
 
   // ensure that a protocol was provided
