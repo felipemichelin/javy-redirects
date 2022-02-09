@@ -12,7 +12,7 @@ export function handler(event, context, callback) {
   // get the details of what we are creating
   var destination = event.queryStringParameters['to'];
   var influencer = event.queryStringParameters['utm_campaign'];
-  var platform = event.queryStringParameters['utm_medium'];
+  var platform = event.queryStringParameters['utm_source'];
 
 
 
