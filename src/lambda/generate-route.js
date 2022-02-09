@@ -12,19 +12,19 @@ export function handler(event, context, callback) {
   // get the details of what we are creating
   var destination = event.queryStringParameters['to'];
   var influencer = event.queryStringParameters['utm_campaign'];
-  var platform = event.queryStringParameters['utm_medium'];
-
+  var platform = event.queryStringParameters['utm_source'];
+  var full_destination = "https://try.javycoffee.com/lp17/" + "?utm_source=" + platform + "utm_medium=influencer" + "&utm_campaign=" + influencer;
 
 
   // ensure that a protocol was provided
-  if(destination.indexOf("://") == -1) {
-    destination = "http://" + destination;
+  if(full_destination.indexOf("://") == -1) {
+    full_destination = "http://" + full_destination;
   }
 
   // prepare a payload to post
   var payload = {
     'form-name' : "routes",
-    'destination': destination,
+    'destination': full_destination,
     'platform': platform,
     'influencer': influencer,
     'expires': ""

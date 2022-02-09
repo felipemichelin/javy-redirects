@@ -19,9 +19,9 @@ function eventHandlers() {
 function submitURL() {
   var influencer = document.querySelector('#influencer').value;
   var platform = document.querySelector('#platform').value;
-  var url = "https://try.javycoffee.com/lp17/?utm_source=" + platform + "&utm_medium=influencer&utm_campaign=" + influencer;
+  var url = "https://try.javycoffee.com/lp17/";
 
-  fetch('/.netlify/functions/generate-route?to=' + url)
+  fetch('/.netlify/functions/generate-route?to=' + url + '&utm_source=' + platform + '&utm_medium=influencer' + '&utm_campaign=' + influencer)
   .then(function(response) { return response.json(); })
   .then(function(data) {
     document.querySelector("#message").innerHTML = `<a href="${data.url}">${data.url}</a>`;
