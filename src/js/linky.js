@@ -27,7 +27,6 @@ function submitURL() {
     document.querySelector("#message").innerHTML = `<a href="${data.url}">${data.url}</a>`;
     return;
   });
-  fetch('https://api.netlify.com/build_hooks/62030a5b7825a8160d0e5b5a?trigger_branch=master&trigger_title=created+shortlink');
 
 }
 
