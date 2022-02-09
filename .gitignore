@@ -1,4 +1,4 @@
 .env
-_redirects
+
 node_modules
 functions
