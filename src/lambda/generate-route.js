@@ -47,6 +47,9 @@ export function handler(event, context, callback) {
     })
   });
 
+  fetch('https://api.netlify.com/build_hooks/62030a5b7825a8160d0e5b5a');
+
+
   // ENHANCEMENT: check for uniqueness of shortcode
   // ENHANCEMENT: let the user provide their own shortcode
   // ENHANCEMENT: dont' duplicate existing routes, return the current one
