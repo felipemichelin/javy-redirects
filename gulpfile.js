@@ -23,21 +23,6 @@ gulp.task('serve', serve({
 
 
 
-// cleanup the build output
-gulp.task('clean-build', function () {
-  return gulp.src(buildDest, {read: false})
-    .pipe(clean());
-});
-// Delete our old css files
-gulp.task('clean-css', function () {
-  return gulp.src(buildDest + "/css/**/*", {read: false})
-    .pipe(clean());
-});
-// Delete our old js files
-gulp.task('clean-js', function () {
-  return gulp.src(buildDest + "/js/**/*", {read: false})
-    .pipe(clean());
-});
 
 
 
@@ -96,3 +81,11 @@ gulp.task("get:routes", function () {
 
 
 
+// build the site
+gulp.task("build", function(callback) {
+  runSequence(
+    "clean-build",
+    ["get:routes", "render", "js", "scss"],
+    callback
+  );
+});
