@@ -2,7 +2,6 @@
 
 var request = require("request");
 var config = require("dotenv").config();
-var Hashids = require("hashids");
 
 
 export function handler(event, context, callback) {
@@ -12,11 +11,9 @@ export function handler(event, context, callback) {
 
   // get the details of what we are creating
   var destination = event.queryStringParameters['to'];
+  var influencer = event.queryStringParameters['utm_campaign'];
 
-  // generate a unique short code (stupidly for now)
-  var hash = new Hashids();
-  var number = Math.round(new Date().getTime() / 100);
-  var code = hash.encode(number);
+
 
   // ensure that a protocol was provided
   if(destination.indexOf("://") == -1) {
@@ -27,7 +24,8 @@ export function handler(event, context, callback) {
   var payload = {
     'form-name' : "routes",
     'destination': destination,
-    'code': code,
+    'platform': platform,
+    'influencer': influencer,
     'expires': ""
   };
 
@@ -37,14 +35,14 @@ export function handler(event, context, callback) {
     if (err) {
       msg = "Post to Routes stash failed: " + err;
     } else {
-      msg = "Route registered. Site deploying to include it. " + rootURL + code
+      msg = "Route registered. Site deploying to include it. " + rootURL + influencer
     }
     console.log(msg);
     // tell the user what their shortcode will be
     return callback(null, {
       statusCode: 200,
       headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({"url": rootURL + code})
+      body: JSON.stringify({"url": rootURL + influencer})
     })
   });
 
