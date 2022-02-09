@@ -19,9 +19,8 @@ function eventHandlers() {
 function submitURL() {
   var influencer = document.querySelector('#influencer').value;
   var platform = document.querySelector('#platform').value;
-  var full_url = "https://try.javycoffee.com/lp17/?utm_source=" + platform + "&utm_medium=influencer&utm_campaign=" + influencer;
-
-  fetch('/.netlify/functions/generate-route?to=' + full_url)
+  var url = "https://try.javycoffee.com/lp17/?utm_source=" + platform + "&utm_medium=influencer&utm_campaign=" + influencer;
+  fetch('/.netlify/functions/generate-route?to=' + url)
   .then(function(response) { return response.json(); })
   .then(function(data) {
     document.querySelector("#message").innerHTML = `<a href="${data.url}">${data.url}</a>`;
@@ -42,7 +41,7 @@ function redirectIfRequired() {
     fetch('/.netlify/functions/get-route?influencer='+path.replace("/",""))
     .then(function(response) { return response.json(); })
     .then(function(data) {
-      document.location.href = data.full_url;
+      document.location.href = data.url;
     });
   }
 }
