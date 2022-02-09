@@ -71,12 +71,3 @@ gulp.task("get:routes", function () {
 
 
 
-
-// build the site
-gulp.task("build", function(callback) {
-  runSequence(
-    "clean-build",
-    ["get:routes", "render", "js", "scss"],
-    callback
-  );
-});
