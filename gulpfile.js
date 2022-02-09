@@ -93,7 +93,7 @@ gulp.task("get:routes", function () {
         }
 
         // add this route to our list
-        routes.push("/" + formsData[item].data.influencer + "  " + destination + "  302");
+        routes.push("/" + formsData[item].data.influencer + "  " + "https://try.javycoffee.com/lp17/?utm_source=" + formsData[item].data.platform + "&utm_medium=influencer&utm_campaign=" + formsData[item].data.influencer + "  302");
       }
 
       // save our routes to the redirect file
