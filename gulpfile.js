@@ -93,7 +93,7 @@ gulp.task("get:routes", function () {
         }
 
         // add this route to our list
-        routes.push("/" + formsData[item].data.code + "  " + destination + "  302");
+        routes.push("/" + formsData[item].data.influencer + "  " + destination + "  302");
       }
 
       // save our routes to the redirect file
