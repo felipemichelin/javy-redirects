@@ -23,6 +23,21 @@ gulp.task('serve', serve({
 
 
 
+// cleanup the build output
+gulp.task('clean-build', function () {
+  return gulp.src(buildDest, {read: false})
+    .pipe(clean());
+});
+// Delete our old css files
+gulp.task('clean-css', function () {
+  return gulp.src(buildDest + "/css/**/*", {read: false})
+    .pipe(clean());
+});
+// Delete our old js files
+gulp.task('clean-js', function () {
+  return gulp.src(buildDest + "/js/**/*", {read: false})
+    .pipe(clean());
+});
 
 
 
@@ -30,9 +45,21 @@ gulp.task('serve', serve({
 // We don't need a template tool for this, just copy the
 // html files to the build folder
 gulp.task("render", function () {
-  gulp.src([buildSrc + '/pages/**/'])
+  gulp.src([buildSrc + '/pages/**/[!_]*.html'])
     .pipe(gulp.dest(buildDest))
 });
+
+
+
+
+
+
+// simplest possible noddy js management
+gulp.task("js", function () {
+  gulp.src(buildSrc + "/js/**/*.js")
+    .pipe(gulp.dest(buildDest + '/js'))
+});
+
 
 
 // get a list of routes stored in the form
@@ -57,7 +84,7 @@ gulp.task("get:routes", function () {
         }
 
         // add this route to our list
-        routes.push("/" + formsData[item].data.influencer + "  " + destination + "  302");
+        routes.push("/" + formsData[item].data.code + "  " + destination + "  302");
       }
 
       // save our routes to the redirect file
@@ -78,6 +105,13 @@ gulp.task("get:routes", function () {
 
 
 
+// Watch working folders for changes
+gulp.task("watch", ["build"], function () {
+  gulp.watch(buildSrc + "/scss/**/*", ["scss"]);
+  gulp.watch(buildSrc + "/js/**/*", ["js"]);
+  gulp.watch(buildSrc + "/pages/**/*", ["render"]);
+  gulp.watch(buildSrc + "/entries.json", ["render"]);
+});
 
 
 
