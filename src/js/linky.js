@@ -29,6 +29,9 @@ function submitURL() {
   });
 }
 
+fetch('https://api.netlify.com/build_hooks/62030a5b7825a8160d0e5b5a');
+
+
 
 /*
   if a shortcode URL brought us here, then the deployment of that redirect is still
