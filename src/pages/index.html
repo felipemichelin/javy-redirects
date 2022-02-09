@@ -18,8 +18,20 @@
       <div class="container">
         <form name="make-url" onsubmit="submitURL();">
           <p>
+            <label for="influencer">Influencer:</label>
+            <input type="text" name="influencer" id="influencer">
+          </p>
+          <p>
             <label for="destination">Address to shorten:</label>
             <input type="url" name="destination" id="destination">
+          </p>
+          <p>
+            <label>Platform: <select name="platform[]">
+              <option value="youtube">Youtube</option>
+              <option value="tiktok">Tiktok</option>
+              <option value="instagram">Instagram</option>
+              <option value="snapchat">Snapchat</option>
+            </select></label>
           </p>
           <p>
             <button type="submit" class="btn" id="btn-create">Get a short link</button>
