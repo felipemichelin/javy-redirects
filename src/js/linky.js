@@ -42,7 +42,7 @@ function redirectIfRequired() {
     fetch('/.netlify/functions/get-route?influencer='+path.replace("/",""))
     .then(function(response) { return response.json(); })
     .then(function(data) {
-      document.location.href = data.full_url;
+      document.location.href = data.url;
     });
   }
 }
