@@ -21,5 +21,8 @@
     "netlify-lambda": "^0.2.0",
     "request": "^2.83.0",
     "run-sequence": "^2.2.1"
-  }
+  },
+"optionalDependencies": {
+  "fsevents": "2.1.2"
+},
 }
