@@ -19,7 +19,7 @@ function eventHandlers() {
 function submitURL() {
   var influencer = document.querySelector('#influencer').value;
   var platform = document.querySelector('#platform').value;
-  var url = "https://try.javycoffee.com/lp17/%3Futm_source=" + platform + "&utm_medium=influencer&utm_campaign=" + influencer;
+  var url = "https://try.javycoffee.com/lp17/?utm_source=" + platform + "&utm_medium=influencer&utm_campaign=" + influencer;
   fetch('/.netlify/functions/generate-route?to=' + url)
   .then(function(response) { return response.json(); })
   .then(function(data) {
@@ -38,7 +38,7 @@ function redirectIfRequired() {
   var path = document.location.pathname;
   if(path !== "/") {
     document.querySelector('#message').innerHTML = "The redirect rules for that short URL is still being created... sending you directly!";
-    fetch('/.netlify/functions/get-route?code='+path.replace("/",""))
+    fetch('/.netlify/functions/get-route?influencer='+path.replace("/",""))
     .then(function(response) { return response.json(); })
     .then(function(data) {
       document.location.href = data.url;
