@@ -28,7 +28,16 @@ gulp.task('clean-build', function () {
   return gulp.src(buildDest, {read: false})
     .pipe(clean());
 });
-
+// Delete our old css files
+gulp.task('clean-css', function () {
+  return gulp.src(buildDest + "/css/**/*", {read: false})
+    .pipe(clean());
+});
+// Delete our old js files
+gulp.task('clean-js', function () {
+  return gulp.src(buildDest + "/js/**/*", {read: false})
+    .pipe(clean());
+});
 
 
 
@@ -36,10 +45,29 @@ gulp.task('clean-build', function () {
 // We don't need a template tool for this, just copy the
 // html files to the build folder
 gulp.task("render", function () {
-  gulp.src([buildSrc + '/pages/**/'])
+  gulp.src([buildSrc + '/pages/**/[!_]*.html'])
     .pipe(gulp.dest(buildDest))
 });
 
+
+
+// Compile SCSS files to CSS
+gulp.task("scss", ['clean-css'], function () {
+  gulp.src(buildSrc + "/scss/main.scss")
+    .pipe(sass({
+      outputStyle: "compressed"
+    })
+    .on('error', sass.logError))
+    .pipe(gulp.dest(buildDest + "/css"))
+});
+
+
+
+// simplest possible noddy js management
+gulp.task("js", function () {
+  gulp.src(buildSrc + "/js/**/*.js")
+    .pipe(gulp.dest(buildDest + '/js'))
+});
 
 
 
