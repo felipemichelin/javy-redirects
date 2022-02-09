@@ -23,7 +23,31 @@ gulp.task('serve', serve({
 
 
 
+// cleanup the build output
+gulp.task('clean-build', function () {
+  return gulp.src(buildDest, {read: false})
+    .pipe(clean());
+});
+// Delete our old css files
+gulp.task('clean-css', function () {
+  return gulp.src(buildDest + "/css/**/*", {read: false})
+    .pipe(clean());
+});
+// Delete our old js files
+gulp.task('clean-js', function () {
+  return gulp.src(buildDest + "/js/**/*", {read: false})
+    .pipe(clean());
+});
 
+
+
+// Compile the templates into html
+// We don't need a template tool for this, just copy the
+// html files to the build folder
+gulp.task("render", function () {
+  gulp.src([buildSrc + '/pages/**/'])
+    .pipe(gulp.dest(buildDest))
+});
 
 
 // get a list of routes stored in the form
@@ -66,6 +90,7 @@ gulp.task("get:routes", function () {
   })
 
 });
+
 
 
 
